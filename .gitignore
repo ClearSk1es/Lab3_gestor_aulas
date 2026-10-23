@@ -1,0 +1,9 @@
+/src/main/resources/hibernate/hibernate.cfg.xml
+target/
+*.class
+.DS_Store
+Thumbs.db
+Desktop.ini
+.env
+.env.*
+!.env.example
