@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
  */
 
 @Entity
-@Table(name = "usuariossistema")
-public class Usuario {
+@Table(name = "usuarios")
+public class Usuario { 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -40,8 +40,8 @@ public class Usuario {
     @Column(name = "Correo")
     private String Correo;
     
-    @Column(name = "Roll")
-    private String Roll;
+    @Column(name = "Rol")
+    private String Rol;
     
     @Column(name = "Estado")
     private String Estado;
@@ -74,8 +74,8 @@ public class Usuario {
         this.Correo = Correo;
     }
 
-    public void setRoll(String Roll) {
-        this.Roll = Roll;
+    public void setRoll(String Rol) {
+        this.Rol = Rol;
     }
 
     public void setEstado(String Estado) {
@@ -110,8 +110,8 @@ public class Usuario {
         return Correo;
     }
 
-    public String getRoll() {
-        return Roll;
+    public String getRol() {
+        return Rol;
     }
 
     public String getEstado() {
