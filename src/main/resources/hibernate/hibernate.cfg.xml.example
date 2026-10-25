@@ -35,6 +35,7 @@
 
         <!-- Entidades registradas -->
         <mapping class="login.sistema.gestion.aulas.entidades.Usuario"/>
+        <mapping class="login.sistema.gestion.aulas.entidades.Aula"/>
 
     </session-factory>
 </hibernate-configuration>
