@@ -54,6 +54,13 @@ CREATE TABLE IF NOT EXISTS usuarios (
 );
 
 -- ============================================
+-- Datos iniciales de prueba para usuario
+-- ============================================
+
+INSERT INTO usuarios (id, Nombre, Apellido, Usuario, Correo, Clave, Rol, Estado, fecha_creacion, fecha_modificacion)
+VALUES (NULL, 'user', 'test', 'usertest', 'user@gmail.com', MD5('1234'), 'OPERARIO', 'ACTIVO', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+
+-- ============================================
 -- Tabla: aulas
 -- Almacena la información de las aulas
 -- ============================================
