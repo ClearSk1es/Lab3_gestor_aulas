@@ -1,4 +1,4 @@
-
+sql
 -- ============================================
 -- Base de datos: gestion_aulas
 -- Sistema de Gestión de Aulas
