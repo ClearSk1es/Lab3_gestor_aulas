@@ -17,15 +17,20 @@ USE gestion_aulas;
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL,
-    correo VARCHAR(150) NOT NULL UNIQUE,
-    clave VARCHAR(255) NOT NULL,
-    rol VARCHAR(30) NOT NULL DEFAULT 'USUARIO',
-    estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVO',
+    Nombre VARCHAR(100) NOT NULL UNIQUE,
+    Apellido VARCHAR(100) NOT NULL,
+    Usuario VARCHAR(100) NOT NULL,
+    Correo VARCHAR(150) NOT NULL UNIQUE,
+    Clave VARCHAR(255) NOT NULL,
+    Rol VARCHAR(30) NOT NULL DEFAULT 'OPERARIO',
+    Estado VARCHAR(20) NOT NULL DEFAULT 'ACTIVO',
+    fecha_creacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fecha_modificacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
 
     CONSTRAINT chk_usuario_rol
-        CHECK (rol IN ('ADMINISTRADOR', 'USUARIO')),
+        CHECK (rol IN ('ADMINISTRADOR', 'OPERARIO')),
 
     CONSTRAINT chk_usuario_estado
         CHECK (estado IN ('ACTIVO', 'INACTIVO')),
@@ -36,12 +41,24 @@ CREATE TABLE IF NOT EXISTS usuarios (
     CONSTRAINT chk_usuario_apellido
         CHECK (CHAR_LENGTH(TRIM(apellido)) > 0),
 
+    CONSTRAINT chk_usuario_usuario
+        CHECK (CHAR_LENGTH(TRIM(Usuario)) > 0),
+
     CONSTRAINT chk_usuario_correo
         CHECK (CHAR_LENGTH(TRIM(correo)) > 0),
 
     CONSTRAINT chk_usuario_clave
         CHECK (CHAR_LENGTH(TRIM(clave)) > 0)
+
+    
 );
+
+-- ============================================
+-- Datos iniciales de prueba para usuario
+-- ============================================
+
+INSERT INTO usuarios (id, Nombre, Apellido, Usuario, Correo, Clave, Rol, Estado, fecha_creacion, fecha_modificacion)
+VALUES (NULL, 'user', 'test', 'usertest', 'user@gmail.com', MD5('1234'), 'OPERARIO', 'ACTIVO', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
 
 -- ============================================
 -- Tabla: aulas
