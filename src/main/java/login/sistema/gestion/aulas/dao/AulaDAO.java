@@ -28,6 +28,24 @@ public class AulaDAO {
         }
     }
 
+    public boolean existePorNombreYEdificio(String nombre, String edificio) {
+    try (Session sesion = HibernateUtil.getSessionFactory().openSession()) {
+
+        Long cantidad = sesion.createQuery(
+            "SELECT COUNT(a) FROM Aula a "
+            + "WHERE a.nombre = :nombre "
+            + "AND a.edificio = :edificio",
+            Long.class
+        )
+        .setParameter("nombre", nombre)
+        .setParameter("edificio", edificio)
+        .uniqueResult();
+
+        return cantidad != null && cantidad > 0;
+    }
+}
+    
+    
     public List<Aula> obtenerTodas() {
         String hql = "FROM Aula";
         try (Session sesion = HibernateUtil.getSessionFactory().openSession()) {

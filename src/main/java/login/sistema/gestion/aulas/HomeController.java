@@ -170,6 +170,35 @@ aula.setEstado(cmbEstado.getValue());
 
 AulaDAO aulaDAO = new AulaDAO();
 
+// Verificar si ya existe un aula con el mismo nombre y edificio.
+try {
+    boolean existe = aulaDAO.existePorNombreYEdificio(nombre, edificio);
+
+    if (existe) {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("Aula duplicada");
+        alerta.setHeaderText(null);
+        alerta.setContentText(
+            "Ya existe un aula con el nombre " + nombre
+            + " en el edificio " + edificio + "."
+        );
+        alerta.showAndWait();
+        return;
+    }
+
+} catch (Exception e) {
+    Alert alerta = new Alert(Alert.AlertType.ERROR);
+    alerta.setTitle("Error de base de datos");
+    alerta.setHeaderText(null);
+    alerta.setContentText(
+        "No se pudo verificar si el aula ya existe. "
+        + "Intente nuevamente."
+    );
+    alerta.showAndWait();
+    return;
+}
+
+// Si no existe un duplicado, intentar guardar el aula.
 boolean guardado = aulaDAO.guardar(aula);
 
 // Muestra un mensaje de éxito si el aula fue registrada.
